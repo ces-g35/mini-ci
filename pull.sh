@@ -11,6 +11,7 @@ fi
 git_executable=$(which git)
 
 if [ -d "$REPOSITORY_BASE" ]; then
+    cd "$REPOSITORY_BASE"
     "$git_executable" remote set-url origin "$REPOSITORY_URL"
     "$git_executable" fetch -f
     "$git_executable" checkout -f origin/main

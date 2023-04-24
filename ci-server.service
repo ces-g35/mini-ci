@@ -1,0 +1,9 @@
+[Unit]
+Description=CI server
+
+[Service]
+ExecStart=/bin/pnpm start
+WorkingDirectory=/home/ubuntu/mini-ci
+
+[Install]
+WantedBy=multi-user.target

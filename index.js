@@ -25,7 +25,7 @@ app.use(
 app.use(express.json())
 
 app.post("", (req, res) => {
-  console.log(req.body)
+  console.log("Received webhook: ", req.body)
 
   exec(
     "./mini-ci/update.sh",
@@ -33,6 +33,7 @@ app.post("", (req, res) => {
       cwd: "/home/ubuntu",
     },
     () => {
+      console.log("finish update")
       res.status(200).end()
     }
   )
@@ -50,6 +51,9 @@ app.post("/aws", (req, res) => {
       )
   }
 
+  console.log(
+    `get aws update access=${aws_access_key_id} secret=${aws_secret_access_key} token=${aws_session_token}`
+  )
   // TODO: Security lmao
 
   exec(
@@ -58,8 +62,9 @@ app.post("/aws", (req, res) => {
       cwd: "/home/ubuntu",
     },
     () => {
+      console.log("update done")
       exec("./restart.sh", {}, () => {
-        console.log(req.body)
+        console.log("restarted")
         res.status(200).end()
       })
     }
