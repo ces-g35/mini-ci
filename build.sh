@@ -9,7 +9,10 @@ fatal() {
 
 if [ -d "$REPOSITORY_BASE" ]; then
     cd "$REPOSITORY_BASE"
+    pnpm i --frozen-lockfile
     pnpm build
+
+    cp -r dist/* /var/www/html
 else
     fatal "repository has not been pull yet"
 fi
