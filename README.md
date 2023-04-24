@@ -1,25 +1,29 @@
 # Env
-REPOSITORY_URL
+### REPOSITORY_URL
+
 repository url
+
 example: https://github.com/ces-g35/cvinder
 
-CLIENT_ID
+### CLIENT_ID
 self explanatory
 
-CLIENT_SECRET
+### CLIENT_SECRET
 self explanatory
 
-AWS_ACCESS_KEY_ID
+### AWS_ACCESS_KEY_ID
 self explanatory
 
-AWS_SECRET_ACCESS_KEY
+### AWS_SECRET_ACCESS_KEY
 self explanatory
 
-AWS_SESSION_TOKEN
+### AWS_SESSION_TOKEN
 self explanatory
 
-URL
+### URL
+
 url of the remote server (don't include the port)
+
 example: 18.204.219.62
 
 # Setup script
@@ -35,9 +39,9 @@ curl http://$URL:5000 \
 ```
 
 # Exposed port
-## 3000
+### 3000
 backend server port
-## 5000
+### 5000
 webhook port
 
 # Note
@@ -47,5 +51,5 @@ Other than running this script user need to
 - Add webhook to github
 
 # Project requirement
-- have build script that with create root of the server at **dist** (Once you run dist, there should be dist/index.html, dist/public/background.png, etc.)
+- have build script that with create root of the server at **dist** (i.e. Once you run dist, there should be dist/index.html, dist/public/background.png, etc.)
 - use pnpm as package manager
