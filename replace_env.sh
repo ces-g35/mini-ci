@@ -17,4 +17,4 @@ do
     command="${command}; s#${key}=.*#${key}=${value}#"
 done
 
-sed -i "$command" .env
+sed -i "$command" $REPOSITORY_BASE/.env
