@@ -6,7 +6,8 @@ cd $(dirname $0)
 
 cd ~
 
-sudo apt update -y && sudo apt upgrade -y
+apt remove -y needrestart
+apt update -y && sudo apt upgrade -y
 
 curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
 sh nodesource_setup.sh
