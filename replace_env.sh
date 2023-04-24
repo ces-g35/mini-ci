@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 if [ $# -lt 1 ]
 then
     echo "usage: $0 <key>=<value> [<key>=<value>]..."

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 cd $(dirname $0)
 
 cd ~
@@ -23,6 +25,7 @@ sed \
 .env.template
 
 cd ..
+chmod +x mini-ci/build.sh
 ./mini-ci/build.sh
 
 cd mini-ci
