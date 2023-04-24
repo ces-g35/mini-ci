@@ -1,3 +1,5 @@
+#!/bin/sh
+
 set -e
 
 if ! git --version > /dev/null 2>&1; then
@@ -8,18 +10,6 @@ fi
 
 git_executable=$(which git)
 
-fatal() {
-    echo "fatal: $1"
-    echo ''
-    show_usage
-    exit 1
-}
-
-if [ $# -ne 1 ]; then
-    fatal "No repository provided"
-fi
-
-
 if [ -d "$REPOSITORY_BASE" ]; then
     "$git_executable" remote set-url origin "$REPOSITORY_URL"
     "$git_executable" fetch -f
@@ -29,4 +19,3 @@ if [ -d "$REPOSITORY_BASE" ]; then
 else
     "$git_executable" clone "$REPOSITORY_URL"
 fi
-
