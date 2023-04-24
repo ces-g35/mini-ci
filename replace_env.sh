@@ -1,16 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ $# -ne 3 ]
+if [ $# -lt 1 ]
 then
-    echo "usage: $0 <access_key> <secret_access_key> <session_id>"
+    echo "usage: $0 <key>=<value> [<key>=<value>]..."
     exit 1
 fi
 
-keys=("AWS_ACCESS_KEY_ID" "AWS_SECRET_ACCESS_KEY" "AWS_SESSION_TOKEN")
 command=""
-for key in "${keys[@]}"
+while [ $# -ge 1 ]
 do
-    value=$1
+    key=$(echo $1 | awk -F= '{print $1}')
+    value=$(echo $1 | awk -F= '{print $2}')
     shift
     command="${command}; s#${key}=.*#${key}=${value}#"
 done
