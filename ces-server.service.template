@@ -1,0 +1,12 @@
+[Unit]
+Description=Comp Eng Ess final project
+After=network.service
+
+[Service]
+ExecStart=/usr/bin/pnpm start
+Environment="NODE_ENV=production"
+WorkingDirectory=/home/ubuntu/[REPOSITORY_BASE]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
