@@ -16,6 +16,7 @@ npm i -g pnpm
 
 # name conflict
 rm -f /etc/apache2/mods-enabled/alias.conf
+sed -i '/DocumentRoot \/var\/www\/html/a\        FallbackResource \/index.html' /etc/apache2/sites-available/000-default.conf
 systemctl restart apache2
 
 ./mini-ci/pull.sh
