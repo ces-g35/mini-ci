@@ -15,7 +15,7 @@ apt install -y nodejs apache2
 npm i -g pnpm
 
 # name conflict
-rm -f /etc/apache/mod-enabled/alias.conf
+rm -f /etc/apache2/mod-enabled/alias.conf
 systemctl restart apache2
 
 ./mini-ci/pull.sh
@@ -45,5 +45,7 @@ sed "s/\\[REPOSITORY_BASE\\]/${REPOSITORY_BASE}/g" ces-server.service.template >
 cp ces-server.service /etc/systemd/system
 systemctl daemon-reload
 systemctl --now enable ces-server.service
+
+cd ..
 
 ./mini-ci/setup-ci-server.sh

@@ -27,6 +27,13 @@ example: 18.204.219.62
 ssh -i <ssh-key> ubuntu@$URL -t "curl -sSfL https://raw.githubusercontent.com/ces-g35/mini-ci/main/boot.sh | REPOSITORY_URL=${REPOSITORY_URL} CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN} URL=${URL}:3000 sh -"
 ```
 
+# AWS update script
+```sh
+curl http://$URL:5000 \
+-H "Content-Type: application/json" \
+-d "{\"aws_access_key_id\": \"${AWS_ACCESS_KEY_ID}\", \"aws_secret_access_key\": \"${AWS_SECRET_ACCESS_KEY}\", \"aws_session_token\": \"${AWS_SESSION_TOKEN}\"}"
+```
+
 # Exposed port
 ## 3000
 backend server port
