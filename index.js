@@ -1,24 +1,41 @@
 import express from "express"
 import { exec } from "node:child_process"
 import * as dotenv from "dotenv"
+import cors from "cors"
 
 const app = express()
 const PORT = 5000
 
 dotenv.config()
 
+console.log(
+  "loading env from",
+  `/home/ubuntu/${process.env.REPOSITORY_BASE}/.env`
+)
+
 dotenv.config({ path: `/home/ubuntu/${process.env.REPOSITORY_BASE}/.env` })
+
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+)
 
 app.use(express.json())
 
 app.post("", (req, res) => {
   console.log(req.body)
 
-  exec("./mini-ci/update.sh", {
-    cwd: "/home/ubuntu",
-  })
-
-  res.status(200).end()
+  exec(
+    "./mini-ci/update.sh",
+    {
+      cwd: "/home/ubuntu",
+    },
+    () => {
+      res.status(200).end()
+    }
+  )
 })
 
 app.post("/aws", (req, res) => {
@@ -39,12 +56,14 @@ app.post("/aws", (req, res) => {
     `./mini-ci/replace_env.sh AWS_ACCESS_KEY_ID=${aws_access_key_id} AWS_SECRET_ACCESS_KEY=${aws_secret_access_key} AWS_SESSION_TOKEN=${aws_session_token}`,
     {
       cwd: "/home/ubuntu",
+    },
+    () => {
+      exec("./restart.sh", {}, () => {
+        console.log(req.body)
+        res.status(200).end()
+      })
     }
   )
-  exec("./restart.sh")
-
-  console.log(req.body)
-  res.status(200).end()
 })
 
 app.listen(PORT, () => {
