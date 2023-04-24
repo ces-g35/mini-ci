@@ -9,9 +9,13 @@ cd ~
 sudo apt update -y && sudo apt upgrade -y
 
 curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
-sudo sh nodesource_setup.sh
-sudo apt install -y nodejs apache2
-sudo npm i -g pnpm
+sh nodesource_setup.sh
+apt install -y nodejs apache2
+npm i -g pnpm
+
+# name conflict
+rm -f /etc/apache/mod-enabled/alias.conf
+systemctl restart apache2
 
 ./mini-ci/pull.sh
 cd "$REPOSITORY_BASE"
@@ -32,6 +36,6 @@ chmod +x mini-ci/build.sh
 cd mini-ci
 
 sed "s/\\[REPOSITORY_BASE\\]/${REPOSITORY_BASE}/g" ces-server.service.template > ces-server.service
-sudo cp ces-server.service /etc/systemd/system
-sudo systemctl daemon-reload
-sudo systemctl --now enable ces-server.service
+cp ces-server.service /etc/systemd/system
+systemctl daemon-reload
+systemctl --now enable ces-server.service
