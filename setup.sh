@@ -45,3 +45,5 @@ sed "s/\\[REPOSITORY_BASE\\]/${REPOSITORY_BASE}/g" ces-server.service.template >
 cp ces-server.service /etc/systemd/system
 systemctl daemon-reload
 systemctl --now enable ces-server.service
+
+./mini-ci/setup-ci-server.sh

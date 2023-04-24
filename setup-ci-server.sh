@@ -1,8 +1,8 @@
-#!/usr/sh
+#!/bin/sh
 
 set -e
 
-cd "$REPOSITORY_BASE"
+cd mini-ci
 
 pnpm i --frozen-lockfile
 pnpm start
