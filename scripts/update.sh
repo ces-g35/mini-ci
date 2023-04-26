@@ -2,10 +2,10 @@
 
 set -e
 
-systemctl disable -q --now ces-server.service
+sudo systemctl disable -q --now ces-server.service
 
-./mini-ci/pull.sh
+./pull.sh
 
-./mini-ci/build.sh
+./build.sh
 
-systemctl enable -q --now ces-server.service
+sudo systemctl enable -q --now ces-server.service
