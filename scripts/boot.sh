@@ -12,6 +12,8 @@ git_executable=$(which git)
 
 "$git_executable" clone https://www.github.com/ces-g35/mini-ci
 
-cd mini-ci
+cp mini-ci/scripts/* .
+
 chmod +x *.sh
 ./setup.sh
+
