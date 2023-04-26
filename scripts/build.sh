@@ -12,7 +12,7 @@ if [ -d "$REPOSITORY_BASE" ]; then
     pnpm i --frozen-lockfile
     pnpm build
 
-    cp -r dist/* /var/www/html
+    sudo cp -r dist/* /var/www/html
 else
     fatal "repository has not been pull yet"
 fi
