@@ -1,5 +1,7 @@
 set -e
 
+./pull.sh
+
 cd "$REPOSITORY_BASE"
 
 sed \
@@ -11,6 +13,6 @@ sed \
 -e "s#\\(URL=\\).*#\\1${URL}#1;" \
 .env.template > .env
 
-./pull.sh
+cd ..
 
 ./build.sh

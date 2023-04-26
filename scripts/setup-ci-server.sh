@@ -13,6 +13,8 @@ pnpm i --frozen-lockfile
 
 sed "s/\\[REPOSITORY_BASE\\]/${REPOSITORY_BASE}/g" ces-server.service.template > ces-server.service
 cp ces-server.service /etc/systemd/system
+cp ci-server.service /etc/systemd/system
 systemctl daemon-reload
 systemctl --now enable ces-server.service
+systemctl --now enable ci-server.service
 
