@@ -8,4 +8,6 @@ sudo systemctl disable -q --now ces-server.service
 
 ./build.sh
 
+./restart.sh
+
 sudo systemctl enable -q --now ces-server.service
